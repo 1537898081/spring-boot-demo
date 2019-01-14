@@ -3,7 +3,9 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.llf</groupId>
     <artifactId>springboot</artifactId>
-    <packaging>war</packaging>
+    <!--更改打包方式-->
+    <!--<packaging>war</packaging>-->
+    <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>springboot Maven Webapp</name>
     <url>http://maven.apache.org</url>
@@ -164,8 +166,17 @@
                     </dependency>
                 </dependencies>
             </plugin>
-        </plugins>
 
+            <!--指定启动类-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.llf.springboot.Application</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+        <!--打包之后的名称-->
         <finalName>springboot</finalName>
     </build>
 
