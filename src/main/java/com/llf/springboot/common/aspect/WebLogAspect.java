@@ -37,17 +37,9 @@ public class WebLogAspect {
     // 每个线程都可以独立的改变自己的副本，而不影响其他线程的副本。
     private static final ThreadLocal<Long> timeTreadLocal = new ThreadLocal<Long>();
 
-    // 任务编号
-    ThreadLocal<String> uuid = new ThreadLocal<String>();
-
 
     //日志打印
     private Logger logger = Logger.getLogger(getClass());
-
-
-    // 任务开始时间
-    ThreadLocal<Long> startTime = new ThreadLocal<Long>();
-
 
     private StringBuilder sbLog = new StringBuilder("\n");
 
