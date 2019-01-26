@@ -1,0 +1,32 @@
+#数据源要更改为自己的
+spring:
+  datasource:
+    name: mydb
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/school?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    minIdle: 1 #最小空闲
+    maxActive: 20 #最大活动
+    initialSize: 1 #初始连接大小
+    timeBetweenEvictionRunsMillis: 3000 #逐出之间的时间为毫秒
+    minEvictableIdleTimeMillis: 300000 #最小可检测时间毫秒
+#    validationQuery: SELECT 'ZTM' FROM DUAL #验证查询
+#    testWhileIdle: true #怠速试验
+#    testOnBorrow: false #借阅测验
+#    testOnReturn: false #返回测试
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  typeAliasesPackage: com.fendo.mybatis.plus.entity
+  typeEnumsPackage: com.fendo.mybatis.plus.entity.enums
+  global-config:
+    id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
+    db-column-underline: false
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
