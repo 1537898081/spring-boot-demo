@@ -1,3 +1,27 @@
+#端口号
+server:
+  port: 8099
+
+
+
+  #数据源要更改为自己的
+spring:
+    # 环境开发/测试/线上 dev|test|prod
+    profiles:
+      active: dev
+    # jackson时间格式化
+    jackson:
+      time-zone: GMT+8
+      date-format: yyyy-MM-dd HH:mm:ss
+    http:
+      multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+
+mybatis:
+  mapperLocations: classpath*:mapper/*.xml
+  typeAliasesPackage: com.llf.springboot.model
 
 #logback配置
 logging:
@@ -6,32 +30,3 @@ logging:
     com:
       llf:
         springboot: DEBUG
-
-#端口号
-server:
-  port: 8099
-
-
-  #数据源要更改为自己的
-spring:
-  datasource:
-    name: mydb
-    type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://127.0.0.1:3306/school?useUnicode=true&characterEncoding=UTF-8
-    username: root
-    password: root
-    driver-class-name: com.mysql.jdbc.Driver
-    minIdle: 1 #最小空闲
-    maxActive: 20 #最大活动
-    initialSize: 1 #初始连接大小
-    timeBetweenEvictionRunsMillis: 3000 #逐出之间的时间为毫秒
-    minEvictableIdleTimeMillis: 300000 #最小可检测时间毫秒
-#    validationQuery: SELECT 'ZTM' FROM DUAL #验证查询
-#    testWhileIdle: true #怠速试验
-#    testOnBorrow: false #借阅测验
-#    testOnReturn: false #返回测试
-
-
-mybatis:
-  mapperLocations: classpath*:mapper/*.xml
-  typeAliasesPackage: com.llf.springboot.model
