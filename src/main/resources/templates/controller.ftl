@@ -24,7 +24,7 @@ import ${superControllerClassPackage};
 @Slf4j
 @RestController
 @CrossOrigin
-@Api(value = "${table.name}CRUD接口")
+@Api(value = "${table.name}CRUD接口",description = "${table.name}CRUD接口")
 @RequestMapping("<#if package.ModuleName??>/${package.ModuleName}</#if>/<#if controllerMappingHyphenStyle??>${controllerMappingHyphen}<#else>${table.entityPath}</#if>")
 <#if superControllerClass??>
 public class ${table.controllerName} extends ${superControllerClass}<${table.serviceName},${table.entityName}> {

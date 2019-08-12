@@ -39,7 +39,7 @@ public class AbstractController<S extends IService<T>,T>{
 	 * @time    2019年8月12日
 	 */
 	@GetMapping("/getById/{id}")
-	@ApiOperation(value = "获取对象", notes = "作者：BianPeng")
+	@ApiOperation(value = "获取对象", notes = "作者：朱晓宇")
 	@ApiImplicitParam(paramType="path", name = "id", value = "对象id", required = true, dataType = "Long")
 	public JsonResult<T> getUserById(@PathVariable("id")Long id){
 		T obj=baseService.getById(id);
@@ -59,7 +59,7 @@ public class AbstractController<S extends IService<T>,T>{
 	 * @time    2019年8月12日
 	 */
 	@PostMapping("/deleteById")
-	@ApiOperation(value = "删除", notes = "作者：BianPeng")
+	@ApiOperation(value = "删除", notes = "作者：朱晓宇")
 	@ApiImplicitParam(paramType="query", name = "id", value = "对象id", required = true, dataType = "Long")
 	public JsonResult<T> deleteById(Long id){
 		JsonResult<T> result=new JsonResult<T>();
@@ -85,7 +85,7 @@ public class AbstractController<S extends IService<T>,T>{
 	 * @time    2019年8月12日
 	 */
 	@PostMapping("/insert")
-	@ApiOperation(value = "添加", notes = "作者：BianPeng")
+	@ApiOperation(value = "添加", notes = "作者：朱晓宇")
 	public JsonResult<T> insert(T entity){
 		JsonResult<T> result=new JsonResult<T>();
 		if (null!=entity) {
@@ -109,7 +109,7 @@ public class AbstractController<S extends IService<T>,T>{
 	 * @time    2019年8月12日
 	 */
 	@PostMapping("/update")
-	@ApiOperation(value = "修改", notes = "作者：BianPeng")
+	@ApiOperation(value = "修改", notes = "作者：朱晓宇")
 	public JsonResult<T> update(T entity){
 		JsonResult<T> result=new JsonResult<T>();
 		if (null!=entity) {

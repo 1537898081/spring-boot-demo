@@ -146,7 +146,7 @@ public class AutoGeneratorHelper {
 
         // 配置模板
         TemplateConfig templateConfig = new TemplateConfig();
-        templateConfig.setController("/templates/controller1");
+        templateConfig.setController("/templates/controller");
         // 配置自定义输出模板
         // templateConfig.setEntity();
         // templateConfig.setService();
