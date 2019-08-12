@@ -1,6 +1,7 @@
 package com.llf.springboot.common.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
@@ -79,6 +80,7 @@ public class AutoGeneratorHelper {
         gc.setEnableCache(false);// XML 二级缓存
         gc.setBaseResultMap(true);// XML ResultMap
         gc.setBaseColumnList(true);// XML columList
+        gc.setIdType(IdType.AUTO); // 主键策略
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
