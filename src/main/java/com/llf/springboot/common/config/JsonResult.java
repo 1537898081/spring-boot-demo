@@ -46,7 +46,7 @@ public class JsonResult<T> implements Serializable{
     private T data;
    
     /**
-     * <p>返回成功,有数据</p>
+     * <p>返回成功,有数据 </p>
      * @param message 操作说明
      * @param data 对象
      * @return JsonResult
@@ -60,7 +60,7 @@ public class JsonResult<T> implements Serializable{
     }
 
     /**
-     * <p>返回成功,有数据</p>
+     * <p>返回成功,有数据 </p>
      * @param data 对象
      * @return JsonResult
      */

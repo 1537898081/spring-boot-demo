@@ -15,7 +15,7 @@ import ${superControllerClassPackage};
 
 /**
 * <p>
-* ${table.comment!} 前端控制器
+* ${table.comment!} 控制器
 * </p>
 *
 * @author ${author}

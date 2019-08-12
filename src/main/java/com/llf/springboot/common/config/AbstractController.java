@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**   
- * <p>自动生成工具：mybatis-dsc-generator</p>
- * 
- * <p>说明： 资金归集API接口层</P>
- * @version: V1.0
- * @author: BianPeng
+ * <p>
+ *     说明：公共控制器
+ * </P>
  *
+ * @author: 朱晓宇
+ * @version: V1.0
  */
 public class AbstractController<S extends IService<T>,T>{
 	

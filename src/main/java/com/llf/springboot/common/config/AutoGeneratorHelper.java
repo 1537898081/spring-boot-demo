@@ -73,11 +73,12 @@ public class AutoGeneratorHelper {
         gc.setOutputDir(projectPath + "/src/main/java");
         // 作者
         gc.setAuthor("朱晓宇");
+        gc.setSwagger2(true); // 开启swagger2
         gc.setFileOverride(true);
         gc.setActiveRecord(true);// 开启 activeRecord 模式
         gc.setEnableCache(false);// XML 二级缓存
         gc.setBaseResultMap(true);// XML ResultMap
-        gc.setBaseColumnList(false);// XML columList
+        gc.setBaseColumnList(true);// XML columList
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
@@ -102,7 +103,8 @@ public class AutoGeneratorHelper {
         strategy.setRestControllerStyle(true);
         // 字段名生成策略
         // strategy.setFieldNaming(NamingStrategy.underline_to_camel);
-        //strategy.setSuperServiceImplClass("com.baomidou.springwind.service.support.BaseServiceImpl");
+//        strategy.setSuperServiceImplClass("com.baomidou.springwind.service.support.BaseServiceImpl");
+        strategy.setSuperControllerClass("com.llf.springboot.common.config.AbstractController");
         mpg.setStrategy(strategy);
 
         // 包配置
@@ -144,7 +146,7 @@ public class AutoGeneratorHelper {
 
         // 配置模板
         TemplateConfig templateConfig = new TemplateConfig();
-
+        templateConfig.setController("/templates/controller1");
         // 配置自定义输出模板
         // templateConfig.setEntity();
         // templateConfig.setService();
