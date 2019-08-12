@@ -91,7 +91,7 @@ public class JsonResult<T> implements Serializable{
      */
     public JsonResult<T> error(String message) {
     	this.setCode(Const.CODE_FAILED);
-    	this.setOperate(Const.OPERATE_FAILED);
+    	this.setOperate(Const.OPERATE_ERROR);
     	this.setMessage(message);
     	this.setData(null);
     	return this;
@@ -104,13 +104,13 @@ public class JsonResult<T> implements Serializable{
      */
     public JsonResult<T> error(String message,T data) {
     	this.setCode(Const.CODE_FAILED);
-    	this.setOperate(Const.OPERATE_FAILED);
+    	this.setOperate(Const.OPERATE_ERROR);
     	this.setMessage(message);
     	this.setData(data);
     	return this;
     }
     public JsonResult(Throwable throwable) {
-    	this.operate=Const.OPERATE_FAILED;
+    	this.operate=Const.OPERATE_ERROR;
         if(throwable instanceof NullPointerException){
             this.code= "1001";
             this.message="空指针："+throwable;
