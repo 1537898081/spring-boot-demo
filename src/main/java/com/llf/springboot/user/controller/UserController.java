@@ -4,6 +4,8 @@ package com.llf.springboot.user.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.llf.springboot.poi.ExcelExport;
+import com.llf.springboot.poi.MyExcelExportUtil;
 import com.llf.springboot.user.model.User;
 import com.llf.springboot.user.service.IUserService;
 import io.swagger.annotations.Api;
@@ -13,9 +15,12 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author 朱晓宇
@@ -50,45 +55,76 @@ public class UserController {
     // 采用restfull 风格
     @ApiOperation("自定义sql--报错")
     @GetMapping
-    public R get(){
+    public R get() {
         return R.ok(userService.getList());
     }
 
     // 采用restfull 风格
     @ApiOperation("测试异常报错")
     @GetMapping("/{id}")
-    public R getById(@PathVariable  String id){
-        int i = 5/0;
-        return R.ok(userService.getMap(new QueryWrapper<User>().eq("id",id)));
+    public R getById(@PathVariable String id) {
+        int i = 5 / 0;
+        return R.ok(userService.getMap(new QueryWrapper<User>().eq("id", id)));
     }
 
     @ApiOperation("分页查询")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageIndex",value = "第几页"),
-            @ApiImplicitParam(name = "pageSize",value = "每页显示多少行"),
+            @ApiImplicitParam(name = "pageIndex", value = "第几页"),
+            @ApiImplicitParam(name = "pageSize", value = "每页显示多少行"),
     })
     @GetMapping("/{pageIndex}/{pageSize}")
-    public R page(@PathVariable Integer pageIndex, @PathVariable Integer pageSize){
-        return R.ok(userService.page(new Page<User>(pageIndex,pageSize),new QueryWrapper<User>()));
+    public R page(@PathVariable Integer pageIndex, @PathVariable Integer pageSize) {
+        return R.ok(userService.page(new Page<User>(pageIndex, pageSize), new QueryWrapper<User>()));
     }
 
     @ApiOperation("保存")
     @PostMapping("/{User}")
-    public R save(@RequestBody User user){
+    public R save(@RequestBody User user) {
         return R.ok(userService.save(user));
     }
 
     @ApiOperation("删除")
     @DeleteMapping("/{id}")
-    public R save(@PathVariable String id){
+    public R save(@PathVariable String id) {
         return R.ok(userService.removeById(id));
     }
 
     @ApiOperation("删除")
     @DeleteMapping("/{name}/{ces}")
-    public R save(@PathVariable String name,String ces){
-        return R.ok(userService.remove(new QueryWrapper<User>().eq("name",name)));
+    public R save(@PathVariable String name, String ces) {
+        return R.ok(userService.remove(new QueryWrapper<User>().eq("name", name)));
     }
 
 
+    @RequestMapping("/exportStudent")
+    public void exportStudent(HttpServletResponse response) {
+        try {
+            List<User> sutdentList = userService.list();
+            MyExcelExportUtil.exportExcel(sutdentList, User.class, "学生基本信息", "新生入学信息", response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 导出Excel所有
+     *
+     * @param response
+     */
+    @RequestMapping("/export")
+    public void exportExcel(HttpServletResponse response, Long companyId) {
+        List<User> epcSystemDictionaryList = userService.list();
+        List<User> list2 = userService.list();
+        for (int i = 0; i < 90000; i++) {
+            for (User user : epcSystemDictionaryList) {
+                list2.add(user);
+            }
+        }
+
+        ExcelExport excelExport = new ExcelExport(response, "数据字典总数据", "sheet1");
+//        excelExport.writeExcel(new String[]{"id", "name", "phone"}
+//                , new String[]{"主键", "名称", "手机号"}
+//                , new int[]{30, 30, 30}, epcSystemDictionaryList);
+        excelExport.writeExcelC(list2, User.class);
+    }
 }

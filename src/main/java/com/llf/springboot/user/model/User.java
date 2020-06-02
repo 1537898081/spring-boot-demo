@@ -1,5 +1,6 @@
 package com.llf.springboot.user.model;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -30,6 +31,7 @@ public class User extends Model<User> {
     /**
      * 主键
      */
+    @Excel(name = "主键", width = 20, orderNum = "5")
     @TableId(value = "id", type = IdType.INPUT)
     @ApiModelProperty(value="主键",example="2")
     private Integer id;
@@ -37,12 +39,14 @@ public class User extends Model<User> {
     /**
      * 名称
      */
+    @Excel(name = "名称", width = 20, orderNum = "5")
     @ApiModelProperty(value="名称",example="测试22222")
     private String name;
 
     /**
      * 手机号
      */
+    @Excel(name = "手机号", width = 20, orderNum = "5")
     @ApiModelProperty(value="手机号",example="13800138000")
     private String phone;
 
